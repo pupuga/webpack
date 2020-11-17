@@ -34,7 +34,6 @@
     "postcss-loader": "^4.0.4",
     "remove": "^0.1.5",
     "sass-loader": "^10.0.4",
-    "style-loader": "^2.0.0",
     "url-loader": "^4.1.0",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",

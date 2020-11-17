@@ -12,12 +12,11 @@ const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, options) => {
 
     const production = (options.mode === 'production');
-
+    
     return {
 
         mode: options.mode,
@@ -48,14 +47,14 @@ module.exports = (env, options) => {
         watchOptions: {
             aggregateTimeout: 100
         },
-
+        
         plugins: [
             new CleanWebpackPlugin(),
             new webpack.DefinePlugin({
                 PRODUCTION: JSON.stringify(production)
             }),
             new MiniCssExtractPlugin(),
-            new CopyWebpackPlugin({patterns: [{from: '.' + srcDir + 'static'}]})        
+            new CopyWebpackPlugin({patterns: [{from: '.' + srcDir + 'static'}]}),
         ],
 
         module: {
@@ -82,10 +81,10 @@ module.exports = (env, options) => {
                 {
                     test: /\.scss$/,
                     use: [
-                        'style-loader',
+                        //MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
-                            options: {sourceMap: production},
+                            options: {sourceMap: !production},
                         },
                         {
                             loader: 'postcss-loader',
@@ -102,7 +101,7 @@ module.exports = (env, options) => {
                         },
                         {
                             loader: 'sass-loader',
-                            options: {sourceMap: production},
+                            options: {sourceMap: !production},
                         },
                         {
                             loader: "@epegzz/sass-vars-loader",
@@ -116,7 +115,7 @@ module.exports = (env, options) => {
                 {
                     test: /\.css$/,
                     use: [
-                        'style-loader',
+                        //MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
                             loader: 'postcss-loader',
