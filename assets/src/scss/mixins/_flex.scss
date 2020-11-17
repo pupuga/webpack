@@ -1,0 +1,12 @@
+@mixin flex-skeleton($max-width: 0, $side-width: 0) {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  @if $max-width > 0 {
+    max-width: $max-width + $side-width * 2;
+    padding-left: $side-width;
+    padding-right: $side-width;
+  }
+  margin: 0 auto;
+}
