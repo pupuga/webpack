@@ -14,10 +14,14 @@
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.13",
     "@babel/register": "^7.12.10",
     "@epegzz/sass-vars-loader": "^6.0.0",
     "autoprefixer": "^10.1.0",

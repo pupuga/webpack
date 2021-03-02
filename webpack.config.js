@@ -156,7 +156,7 @@ module.exports = (env, options) => {
             ]
         },
         resolve: {
-            extensions: ['.js', '.json', '.jsx']
+            extensions: ['.js', '.json']
         },
     }
 }
