@@ -11,7 +11,6 @@ const path = require('path');
 const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, options) => {
 
@@ -53,7 +52,6 @@ module.exports = (env, options) => {
             new webpack.DefinePlugin({
                 PRODUCTION: JSON.stringify(production)
             }),
-            new MiniCssExtractPlugin(),
             new CopyWebpackPlugin({patterns: [{from: '.' + srcDir + 'static'}]}),
         ],
 
@@ -81,7 +79,7 @@ module.exports = (env, options) => {
                 {
                     test: /\.scss$/,
                     use: [
-                        //MiniCssExtractPlugin.loader,
+ 			'style-loader',
                         {
                             loader: 'css-loader',
                             options: {sourceMap: !production},
@@ -115,7 +113,7 @@ module.exports = (env, options) => {
                 {
                     test: /\.css$/,
                     use: [
-                        //MiniCssExtractPlugin.loader,
+ 			'style-loader',
                         'css-loader',
                         {
                             loader: 'postcss-loader',
@@ -150,7 +148,7 @@ module.exports = (env, options) => {
                     use: {
                         loader: 'url-loader',
                         options: {
-                            limit: 40960,
+                            limit: 4096,
                             name: '[name].[ext]'
                         }
                     },
@@ -158,7 +156,7 @@ module.exports = (env, options) => {
             ]
         },
         resolve: {
-            extensions: ['.js', '.json']
+            extensions: ['.js', '.json', '.jsx']
         },
     }
 }
