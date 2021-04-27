@@ -1,5 +1,0 @@
-@mixin placeholder($property, $parameters) {
-  &::placeholder {
-    #{$property}: $parameters;
-  }
-}

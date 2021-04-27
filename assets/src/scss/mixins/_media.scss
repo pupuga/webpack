@@ -46,12 +46,6 @@
   };
 }
 
-@mixin media-height($height) {
-  @media only screen and (max-height: $height + px) {
-    @content
-  }
-}
-
 @mixin media-hide-visible($medias) {
   @each $media in $medias {
     .hide-#{$media} {
