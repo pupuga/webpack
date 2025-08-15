@@ -129,50 +129,64 @@
   }
 }
 
-@mixin responsive-button($color, $point: 768, $border: true, $shadow: true, $width: 50px, $horizontal-value: 10px, $vertical-value: 10px) {
+@mixin responsive-button($color, $point: 768, $border: 2px, $shadow: true, $width: 50px, $horizontal-value: 10px, $vertical-value: 10px) {
   .responsive-button {
     cursor: pointer;
     display: none;
+/*    position: fixed;
+    right: $horizontal-value;
+    top: $vertical-value;*/
+    position: relative;
     z-index: 10000;
-    position: fixed;
-    flex-direction: column;
     box-sizing: border-box;
-    justify-content: space-around;
-    left: $horizontal-value;
-    top: $vertical-value;
     width: $width;
+    min-width: $width;
     height: $width;
     border-radius: 5px;
-    padding: 8px;
-    background: $color;
+    padding: 4px;
+    background: white;
     transition: 0.3s;
-
-    &--open {
-      left: 260px;
-    }
 
     @include media($point) {
       display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    @if $border == true {
-      border: 2px solid white;
+    @if $border != 0 {
+      border: $border solid $color;
     }
     @if $shadow == true {
       box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.4);
     }
 
-    &__line {
-      height: 3px;
-      background: white;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+    &__lines {
+      min-width: 100%;
+      position: relative;
+      z-index: 1;
+    }
 
-      &--open {
+    &__line:not(:last-child) {
+      margin-bottom: $border * 3;
+    }
+
+    &__line {
+      width: 100%;
+      @if $border != 0 {
+        height: $border;
+      }
+      background: $color;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+    }
+
+    &.open {
+      .responsive-button__line {
         transition: 0.3s;
+        top: 0;
+        left: 0;
 
         &:first-child {
           transform: rotate(45deg);
-          position: relative;
-          transition: 0.3s;
+          position: absolute;
 
           & + * {
             display: none;
@@ -181,8 +195,7 @@
 
         &:last-child {
           transform: rotate(-45deg);
-          position: relative;
-          margin-top: -30px;
+          position: absolute;
         }
       }
     }

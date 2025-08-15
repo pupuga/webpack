@@ -1,13 +1,13 @@
 @import "media";
 
-@mixin body($font-size: 14px, $max-width: 1240px, $side-width: 10px, $font-family: sans-serif) {
+@mixin body($font-size: 14px, $max-width: 1240px, $side-width: 10px, $font-family: sans-serif, $text-color: black, $sidebar-width: 280px, $sidebar-side-width: 20) {
   html {
     font-size: $font-size;
     height: 100%;
     margin: 0;
     padding: 0;
     line-height: 1;
-    @include media(1024) {
+    @include media(960) {
       font-size: 14px;
     }
   }
@@ -22,30 +22,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: $text-color;
+    font-weight: 400;
   }
 
-  .skeleton {
-    @include skeleton($max-width, $side-width);
-    &--center {
-      justify-content: center;
-    }
-  }
-}
-
-@mixin skeleton($max-width, $side-width) {
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  width: 100%;
-  @if $max-width > 0 {
-    max-width: $max-width + $side-width * 2;
-    padding-left: $side-width;
-    padding-right: $side-width;
-  }
-  margin: 0 auto;
-}
-
-@mixin common-typography($font-family) {
+  @mixin common-typography($font-family) {
   p {
     margin: 0;
   }
@@ -111,6 +92,12 @@
 
   input {
     -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
   }
 
   textarea {
@@ -162,94 +149,4 @@
   .pointer {
     cursor: pointer;
   }
-
-  .display-none {
-    display: none;
-  }
-
-  .display-block {
-    display: block;
-  }
-
-  .display-inline-block {
-    display: inline-block;
-  }
-
-  .alignleft {
-    float: left;
-  }
-
-  .alignright {
-    float: right;
-  }
-
-  .aligncenter {
-    display: block;
-    margin: 0 auto;
-  }
-
-  .width-full {
-    width: 100%;
-  }
-
-  .width-half {
-    width: 50%;
-  }
-
-  .content-left {
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .content-center {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .content-right {
-    justify-content: flex-end;
-    text-align: right;
-  }
-}
-
-@mixin common-important-classes() {
-  .display-none-force {
-    display: none !important;
-  }
-
-  .display-block-force {
-    display: block !important;
-  }
-
-  .display-inline-block-force {
-    display: inline-block !important;
-  }
-
-  .template {
-    display: none !important;
-  }
-
-  .background {
-    &--transparent {
-      background: transparent !important;
-    }
-  }
-
-  .underline {
-    text-decoration: underline !important;
-    &:hover {
-      text-decoration: none !important;
-    }
-  }
-
-  .field-error {
-    border-color: red !important;
-    background-color: #ffe5e5 !important;
-  }
-
-  .field-checked {
-    border-color: green !important;
-    background-color: #e5f2e5 !important;
-  }
-
 }

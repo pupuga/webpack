@@ -1,1 +1,5 @@
+/assets/dist/
+!/assets/dist/.gitkeep
 /node_modules/
+/.idea/
+yarn.lock
